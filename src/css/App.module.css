@@ -1,0 +1,12 @@
+* {
+  font-family: "Nunito", Roboto, system-ui, Tahoma, sans-serif;
+}
+
+.app {
+  background-color: #f9f4f4;
+}
+
+.wrapper {
+  padding: 30px 60px 190px;
+  height: 100%;
+}
