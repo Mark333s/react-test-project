@@ -1,13 +1,13 @@
 .inputContainer {
-  display: flex;
-  justify-content: center;
+  margin-left: 4%;
+  margin-right: 2%;
   margin-bottom: 10px;
 }
 
 .input {
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 12px 20px;
-  width: 90%;
+  width: 94%;
   border-radius: 4px;
   font-size: 16px;
   transition: all 0.15s ease-in-out;

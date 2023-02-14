@@ -2,11 +2,16 @@
   font-family: "Nunito", Roboto, system-ui, Tahoma, sans-serif;
 }
 
-.app {
+body {
   background-color: #f9f4f4;
 }
 
-.wrapper {
+.app {
   padding: 30px 60px 190px;
-  height: 100%;
+}
+
+.wrapper {
+  display: grid;
+  flex-direction: column;
+  height: 110vh;
 }

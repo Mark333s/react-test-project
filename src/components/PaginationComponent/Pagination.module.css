@@ -1,6 +1,6 @@
 .root {
-  display: flex;
-  justify-content: center;
+  align-self: flex-end;
+  justify-self: center;
 }
 
 li {
