@@ -28,17 +28,6 @@ const App = () => {
     getRepos();
   }, [currentPage]);
 
-  useEffect(() => {
-    checkedNameRepositories.filter((obj) => {
-      if (obj.name.toLowerCase().includes(searchValue.toLowerCase())) {
-        setStatus(true);
-        return true;
-      }
-      setStatus(false);
-      return false;
-    });
-  }, [currentPage, searchValue]);
-
   const checkedNameRepositories = repos.filter((obj) => {
     if (obj.name.toLowerCase().includes("react")) {
       return true;
@@ -60,7 +49,7 @@ const App = () => {
     <div className={styles.app}>
       <div className={styles.wrapper}>
         <Search />
-        {status ? (
+        {repositories.length > 0 ? (
           repositories
         ) : (
           <p className={styles.errorText}>
