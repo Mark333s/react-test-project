@@ -43,11 +43,19 @@ const App = () => {
     })
     .map((obj) => <Repositories {...obj} key={obj.id} />);
 
+  console.log(repositories, "repositories");
+
   return (
     <div className={styles.app}>
       <div className={styles.wrapper}>
         <Search />
-        {repositories}
+        {repositories.length === 0 ? (
+          <p className={styles.errorText}>
+            По Вашому запиту не знайдено жодного репозиторія
+          </p>
+        ) : (
+          repositories
+        )}
         <Pagination currentPage={currentPage} onChangePage={onChangePage} />
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "../RepoComponent/Repo.module.css";
 
-import {star, userIcon } from "../../assets/constants/img";
+import { star, userIcon } from "../../assets/constants/img";
 
 export const Repositories = ({
   name,
@@ -23,7 +23,7 @@ export const Repositories = ({
     <div className={styles.container}>
       <div className={styles.leftContainer}>
         <div className={styles.imgContainer}>
-          <img src={userImage} alt="userImage" width="128px" height="144px" />
+          <img src={userImage} alt="userImage" width="144px" height="144px" />
         </div>
         <div className={styles.textContainer}>
           <h3 className={styles.repoText}>{repoName}</h3>
