@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./css/App.module.css";
@@ -11,6 +11,8 @@ import { fetchRepositories, setCurrentPage } from "./redux/slices/repoSlice";
 import { selectReposetories } from "./redux/slices/repoSlice";
 
 const App = () => {
+  const [status, setStatus] = React.useState(false);
+  console.log(status, "status");
   const dispatch = useDispatch();
   const { currentPage, repos, searchValue } = useSelector(selectReposetories);
 
@@ -25,6 +27,17 @@ const App = () => {
   React.useEffect(() => {
     getRepos();
   }, [currentPage]);
+
+  useEffect(() => {
+    checkedNameRepositories.filter((obj) => {
+      if (obj.name.toLowerCase().includes(searchValue.toLowerCase())) {
+        setStatus(true);
+        return true;
+      }
+      setStatus(false);
+      return false;
+    });
+  }, [currentPage, searchValue]);
 
   const checkedNameRepositories = repos.filter((obj) => {
     if (obj.name.toLowerCase().includes("react")) {
@@ -43,18 +56,16 @@ const App = () => {
     })
     .map((obj) => <Repositories {...obj} key={obj.id} />);
 
-  console.log(repositories, "repositories");
-
   return (
     <div className={styles.app}>
       <div className={styles.wrapper}>
         <Search />
-        {repositories.length === 0 ? (
-          <p className={styles.errorText}>
-            По Вашому запиту не знайдено жодного репозиторія
-          </p>
-        ) : (
+        {status ? (
           repositories
+        ) : (
+          <p className={styles.errorText}>
+            По Вашому запиту не знайдено жодного репозиторія{" "}
+          </p>
         )}
         <Pagination currentPage={currentPage} onChangePage={onChangePage} />
       </div>
