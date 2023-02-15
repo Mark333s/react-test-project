@@ -1,23 +1,32 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const initialState = {
+  repos: [],
+  currentPage: 1,
+  searchValue: "react",
+};
+
 export const fetchRepositories = createAsyncThunk(
   "repositories/fetchRepositories",
   async (params) => {
-    const { currentPage } = params;
+    const { currentPage, searchValue } = params;
+    if (searchValue.length < 1) {
+      console.log("checkedSearchValue");
+      const checkedSearchValue = "react";
+      const { data } = await axios.get(
+        `https://api.github.com/search/repositories?q=${checkedSearchValue}&page=${currentPage}&per_page=3`
+      );
+
+      return data;
+    }
     const { data } = await axios.get(
-      `https://api.github.com/orgs/reactjs/repos?page=${currentPage}&per_page=3`
+      `https://api.github.com/search/repositories?q=${searchValue}&page=${currentPage}&per_page=3`
     );
 
     return data;
   }
 );
-
-const initialState = {
-  repos: [],
-  currentPage: 1,
-  searchValue: "",
-};
 
 export const repoSlice = createSlice({
   name: "repositories",
